@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
+import { stripe } from '@/lib/stripe'
+import { randomUUID } from 'crypto'
 
 export const dynamic = 'force-dynamic'
-import { prisma } from '@/lib/prisma'
-import { createPaymentIntent } from '@/lib/stripe'
-import { randomUUID } from 'crypto'
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,25 +11,47 @@ export async function POST(req: NextRequest) {
     const { name, email, phone, items, total } = body
 
     const orderId = `FD-STR-${Date.now()}-${randomUUID().slice(0, 6).toUpperCase()}`
+    const siteUrl = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
 
-    // Create Stripe PaymentIntent
-    const intent = await createPaymentIntent(total, 'dop', {
-      orderId,
-      customerEmail: email,
-      customerName:  name,
+    // Build Stripe line items from cart
+    const lineItems = items.map((item: any) => ({
+      price_data: {
+        currency:     'dop',
+        unit_amount:  Math.round(item.price * 100), // centavos
+        product_data: {
+          name:        item.name,
+          description: `Francis Dadus — ${item.name}`,
+        },
+      },
+      quantity: item.quantity,
+    }))
+
+    // Create Stripe Checkout Session (hosted payment page)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode:                 'payment',
+      customer_email:       email,
+      line_items:           lineItems,
+      metadata: {
+        orderId,
+        customerName:  name,
+        customerPhone: phone ?? '',
+      },
+      success_url: `${siteUrl}/checkout/confirmacion?order=${orderId}`,
+      cancel_url:  `${siteUrl}/checkout`,
     })
 
-    // Save pending order
+    // Save pending order in DB before redirecting
     await prisma.order.create({
       data: {
-        id:            orderId,
-        customerName:  name,
-        customerEmail: email,
-        customerPhone: phone,
+        id:                  orderId,
+        customerName:        name,
+        customerEmail:       email,
+        customerPhone:       phone,
         total,
-        paymentMethod: 'STRIPE',
-        status:        'PENDING',
-        stripePaymentIntent: intent.id,
+        paymentMethod:       'STRIPE',
+        status:              'PENDING',
+        stripePaymentIntent: session.id,
         orderItems: {
           create: items.map((item: any) => ({
             productId: item.productId,
@@ -41,10 +63,8 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    return NextResponse.json({
-      clientSecret: intent.client_secret,
-      orderId,
-    })
+    // Return the Stripe hosted checkout URL
+    return NextResponse.json({ url: session.url, orderId })
   } catch (error: any) {
     console.error('[STRIPE PAYMENT ERROR]', error)
     return NextResponse.json(
