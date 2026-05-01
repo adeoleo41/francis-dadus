@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Francis Dadus — Brand Design System
+   Colores: Dorado (#C9A84C) + Carbón (#1A1A1A)
+   ───────────────────────────────────────────── */
+
+:root {
+  --gold:        #C9A84C;
+  --gold-light:  #f2de94;
+  --gold-dark:   #9a7a32;
+  --charcoal:    #1A1A1A;
+  --gray-mid:    #6B7280;
+  --gray-light:  #F5F5F0;
+  --white:       #FFFFFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-charcoal-950 font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gold-500 hover:bg-gold-600
+           text-white font-semibold
+           px-6 py-3 rounded-full
+           transition-all duration-300
+           shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2
+           border-2 border-gold-500 text-gold-600
+           hover:bg-gold-500 hover:text-white
+           font-semibold px-6 py-3 rounded-full
+           transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2
+           bg-charcoal-950 hover:bg-charcoal-800
+           text-white font-semibold
+           px-6 py-3 rounded-full
+           transition-all duration-300
+           shadow-md hover:shadow-lg;
+  }
+
+  /* ── Section wrappers ── */
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl sm:text-4xl font-bold text-charcoal-950 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-gold-500 text-sm font-semibold uppercase tracking-widest mb-3;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md
+           border border-gray-100
+           transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .card-gold {
+    @apply bg-gold-500 rounded-2xl text-white shadow-md;
+  }
+
+  /* ── Gold divider ── */
+  .gold-divider {
+    @apply w-16 h-1 bg-gold-500 rounded-full my-4;
+  }
+
+  /* ── Nav link ── */
+  .nav-link {
+    @apply text-charcoal-800 hover:text-gold-500
+           font-medium transition-colors duration-200
+           relative after:absolute after:bottom-0 after:left-0
+           after:h-0.5 after:w-0 after:bg-gold-500
+           after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+}
+
+/* ─── Animations ─────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+
+/* ─── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }

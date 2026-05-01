@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/tienda/page": "app/tienda/page.js",
+  "/api/payment/azul/route": "app/api/payment/azul/route.js",
+  "/checkout/page": "app/checkout/page.js"
+}
