@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
@@ -14,7 +14,7 @@
     "db:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
-    "next": "14.2.3",
+    "next": "^14.2.0",
     "react": "^18",
     "react-dom": "^18",
     "@prisma/client": "^5.14.0",
@@ -45,7 +45,8 @@
     "postcss": "^8",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3",
+    "eslint-config-next": "^14.2.0",
     "ts-node": "^10.9.2"
   }
 }
+

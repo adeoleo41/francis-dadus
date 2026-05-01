@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+
+export const dynamic = 'force-dynamic'
 import { prisma } from '@/lib/prisma'
 import { createPaymentIntent } from '@/lib/stripe'
 import { randomUUID } from 'crypto'
