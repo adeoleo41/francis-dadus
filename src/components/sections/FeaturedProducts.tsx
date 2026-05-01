@@ -25,7 +25,7 @@ const featured = [
     icon:        Users,
     imageUrl:    'https://ik.imagekit.io/202507/FD/francis_talent.jpeg',
     badge:       'En Vivo',
-    badgeColor:  'bg-charcoal-700',
+    badgeColor:  'bg-navy-700',
   },
   {
     id:          '3',

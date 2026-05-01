@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center overflow-hidden bg-charcoal-950"
+      className="relative min-h-screen flex items-center overflow-hidden bg-navy-950"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -83,7 +83,7 @@ export default function Hero() {
             <div className="relative w-[320px] h-[400px] sm:w-[380px] sm:h-[460px]">
               {/* Gold frame */}
               <div className="absolute inset-0 bg-gold-gradient rounded-3xl rotate-3 opacity-60" />
-              <div className="absolute inset-0 bg-charcoal-800 rounded-3xl -rotate-1" />
+              <div className="absolute inset-0 bg-navy-800 rounded-3xl -rotate-1" />
 
               {/* Profile image */}
               <Image

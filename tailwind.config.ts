@@ -33,7 +33,20 @@ const config: Config = {
           700: '#4f4f4f',
           800: '#454545',
           900: '#3d3d3d',
-          950: '#1A1A1A', // PRIMARY DARK
+          950: '#1A1A1A',
+        },
+        navy: {
+          50:  '#edf0fb',
+          100: '#d0d9f2',
+          200: '#99ade0',
+          300: '#6080c8',
+          400: '#3a5cad',
+          500: '#254494',
+          600: '#1d3880',
+          700: '#162d6b',
+          800: '#0f2355',
+          900: '#0a1a40',
+          950: '#071330', // PRIMARY NAVY
         },
       },
       fontFamily: {
@@ -42,7 +55,7 @@ const config: Config = {
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg, #C9A84C 0%, #f2de94 50%, #C9A84C 100%)',
-        'dark-gradient': 'linear-gradient(135deg, #1A1A1A 0%, #3d3d3d 100%)',
+        'navy-gradient': 'linear-gradient(135deg, #071330 0%, #0f2355 100%)',
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out forwards',

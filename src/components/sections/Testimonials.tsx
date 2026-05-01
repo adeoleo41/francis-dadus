@@ -26,7 +26,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-charcoal-950">
+    <section className="py-24 bg-navy-950">
       <div className="section-container">
         {/* Header */}
         <div className="text-center mb-16">
@@ -44,7 +44,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="bg-charcoal-800 border border-charcoal-700 rounded-2xl p-7 flex flex-col gap-4"
+              className="bg-navy-800 border border-navy-700 rounded-2xl p-7 flex flex-col gap-4"
             >
               {/* Stars */}
               <div className="flex gap-1">
@@ -59,7 +59,7 @@ export default function Testimonials() {
               </p>
 
               {/* Person */}
-              <div className="flex items-center gap-3 pt-3 border-t border-charcoal-700">
+              <div className="flex items-center gap-3 pt-3 border-t border-navy-700">
                 <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   {t.initials}
                 </div>

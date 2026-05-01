@@ -86,7 +86,7 @@ export default function TiendaPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-24">
       {/* Page header */}
-      <div className="bg-charcoal-950 py-16">
+      <div className="bg-navy-950 py-16">
         <div className="section-container text-center">
           <p className="text-gold-400 text-sm font-semibold uppercase tracking-widest mb-3">
             Recursos Exclusivos

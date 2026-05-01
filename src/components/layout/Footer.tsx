@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Youtube, Mail, Phone } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal-950 text-white">
+    <footer className="bg-navy-950 text-white">
       {/* Main footer */}
       <div className="section-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -112,7 +112,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-charcoal-800">
+      <div className="border-t border-navy-800">
         <div className="section-container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} Francis Dadus. Todos los derechos reservados.
