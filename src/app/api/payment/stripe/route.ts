@@ -62,10 +62,9 @@ export async function POST(req: NextRequest) {
         stripePaymentIntent: session.id,
         orderItems: {
           create: items.map((item: any) => ({
-            productId: item.productId,
-            quantity:  item.quantity,
-            price:     item.price,
-            name:      item.name,
+            quantity: item.quantity,
+            price:    item.price,
+            name:     item.name,
           })),
         },
       },
