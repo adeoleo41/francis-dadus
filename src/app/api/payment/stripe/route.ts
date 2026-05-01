@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { stripe } from '@/lib/stripe'
+import Stripe from 'stripe'
 import { randomUUID } from 'crypto'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
   try {
+    const stripeKey = process.env.STRIPE_SECRET_KEY
+    if (!stripeKey) {
+      console.error('[STRIPE] STRIPE_SECRET_KEY is not set')
+      return NextResponse.json({ error: 'Stripe no configurado' }, { status: 500 })
+    }
+
+    const stripe = new Stripe(stripeKey, { apiVersion: '2024-04-10' })
+
     const body = await req.json()
     const { name, email, phone, items, total } = body
 
