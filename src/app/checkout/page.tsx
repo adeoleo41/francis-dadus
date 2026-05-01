@@ -69,11 +69,9 @@ export default function CheckoutPage() {
 
       if (!res.ok) throw new Error(result.error ?? 'Error en el pago')
 
-      if (data.paymentMethod === 'stripe' && result.clientSecret) {
-        // In production: use Stripe Elements to confirm the payment
-        // For now, redirect to a success simulation
+      if (data.paymentMethod === 'stripe' && result.url) {
         toast.success('Redirigiendo a Stripe…')
-        window.location.href = result.url ?? '/'
+        window.location.href = result.url
         return
       }
 
